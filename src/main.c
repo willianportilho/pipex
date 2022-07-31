@@ -6,17 +6,20 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 17:29:18 by wportilh          #+#    #+#             */
-/*   Updated: 2022/07/22 18:03:24 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/07/30 18:10:00 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <fcntl.h>
 
-int	main(void)
+int	main(int argc, char *argv[], char *envp[])
 {
-	int	id;
+	t_data	data;
 
-	id = fork();
-	ft_printf("Hello World %d Error\n", id);
+	pre_pipex(argc, argv, envp, &data);
 }
