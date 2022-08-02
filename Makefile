@@ -6,19 +6,21 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/08/01 02:52:49 by wportilh         ###   ########.fr        #
+#    Updated: 2022/08/03 00:57:16 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SOURCES =	         \
 			main.c    \
-			pre_pipex.c\
-			pipex.c
+			pipex_pre.c\
+			pipex.c     \
+			pipex_error.c\
+			pipex_clear.c
 
 NAME =		pipex
 
 CC =		cc
-CFLAGS =	-g -Wall -Wextra -Werror
+CFLAGS =	-g3 -Wall -Wextra -Werror
 RM =		rm -f
 RM_ALL =	rm -rf
 

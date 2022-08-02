@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pipex_clear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/22 17:29:18 by wportilh          #+#    #+#             */
-/*   Updated: 2022/08/03 01:22:11 by wportilh         ###   ########.fr       */
+/*   Created: 2022/08/03 00:49:04 by wportilh          #+#    #+#             */
+/*   Updated: 2022/08/03 01:05:45 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
-int	main(int argc, char *argv[], char *envp[])
+void	pipex_clear(t_data *data)
 {
-	t_data	data;
+	int	i;
 
-	pipex_pre(argc, argv, envp, &data);
-	pipex(&data, envp);
-	pipex_clear(&data);
-	return (data.pipex.exit);
+	i = 0;
+	while (data->arg.cmd[i])
+		free(data->arg.cmd[i++]);
+	i = 0;
+	while (data->arg.cmd2[i])
+		free(data->arg.cmd2[i++]);
+	free(data->arg.cmd);
+	free(data->arg.cmd2);
+	free(data->path.cmd_path);
+	free(data->path.cmd2_path);
+	free (data->path.all_path);
 }

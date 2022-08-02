@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pipex_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/22 17:29:18 by wportilh          #+#    #+#             */
-/*   Updated: 2022/08/03 01:22:11 by wportilh         ###   ########.fr       */
+/*   Created: 2022/08/02 23:26:13 by wportilh          #+#    #+#             */
+/*   Updated: 2022/08/03 01:18:38 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
-int	main(int argc, char *argv[], char *envp[])
+void	fd_error(char *file_err, int check, t_data *data)
 {
-	t_data	data;
-
-	pipex_pre(argc, argv, envp, &data);
-	pipex(&data, envp);
-	pipex_clear(&data);
-	return (data.pipex.exit);
+	char	*str;
+	str = ft_strjoin("bash: ", file_err);
+	perror(str);
+	free(str);
+	if (check == OUTFILE)
+		exit (EXIT_FAILURE);
+	else
+	{
+		if (access(file_err, F_OK) != 0)
+			data->pipex.exit = 1;
+	}
 }
