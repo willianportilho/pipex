@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 02:20:17 by wportilh          #+#    #+#             */
-/*   Updated: 2022/08/03 19:22:19 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/08/03 23:55:23 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ static void	get_cmd(char *argv[], t_data *data)
 		free(temp2);
 	}
 	if (!data->path.cmd_path)
+	{
 		cmd_error(data->arg.cmd[0]);
+		
+	}
 	if (!data->path.cmd2_path)
 		cmd_error(data->arg.cmd2[0]);
 }
