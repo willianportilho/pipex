@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:11:31 by wportilh          #+#    #+#             */
-/*   Updated: 2022/08/03 19:09:59 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/08/08 00:16:12 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ typedef struct s_path
 
 typedef struct s_pipex
 {
-	int	fd[2];
-	int	pid1;
-	int	pid2;
-	int	exit;
-	int	status;
+	int		fd[2];
+	pid_t	pid1;
+	pid_t	pid2;
+	int		exit;
+	int		status;
 }		t_pipex;
 
 typedef struct s_data
