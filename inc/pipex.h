@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:11:31 by wportilh          #+#    #+#             */
-/*   Updated: 2022/08/08 05:48:55 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/08/08 23:20:37 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ void	fd_error(char *file_err, int check, t_data *data);
 void	cmd_error(char *cmd_err);
 char	*get_cmd_path(char *cmd, char *envp[]);
 char	**pipex_cmd_arg(char *cmd);
+void	pipex_clean(char **cmd_path, char ***cmd_arg);
 
 #endif

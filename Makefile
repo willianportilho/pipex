@@ -6,7 +6,7 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/08/08 05:02:13 by wportilh         ###   ########.fr        #
+#    Updated: 2022/08/08 23:22:00 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ SOURCES =	           \
 			main.c      \
 			pipex_utils.c\
 			pipex_cmd.c   \
-			pipex.c        \
+			pipex_clean.c  \
+			pipex.c         \
 			pipex_error.c
 
 NAME =		pipex
