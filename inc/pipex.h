@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:11:31 by wportilh          #+#    #+#             */
-/*   Updated: 2022/08/08 00:16:12 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/08/08 05:48:55 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,6 @@ typedef struct s_file
 	int	outfile;
 }		t_file;
 
-typedef struct s_arg
-{
-	char	**cmd;
-	char	**cmd2;
-}			t_arg;
-
-typedef struct s_path
-{
-	char	**all_path;
-	char	*cmd_path;
-	char	*cmd2_path;
-}			t_path;
-
 typedef struct s_pipex
 {
 	int		fd[2];
@@ -52,15 +39,15 @@ typedef struct s_pipex
 typedef struct s_data
 {
 	t_file	file;
-	t_path	path;
-	t_arg	arg;
 	t_pipex	pipex;
 }			t_data;
 
-void	pipex(t_data *data, char *envp[]);
-void	pipex_pre(int argc, char *argv[], char *envp[], t_data *data);
-void	pipex_clear(t_data *data);
+void	pipex(t_data *data, char *argv[], char *envp[]);
+void	pipex_pre(int argc, char *argv[], t_data *data);
+void	pipex_cmd(char *cmd, char *envp[]);
 void	fd_error(char *file_err, int check, t_data *data);
 void	cmd_error(char *cmd_err);
+char	*get_cmd_path(char *cmd, char *envp[]);
+char	**pipex_cmd_arg(char *cmd);
 
 #endif

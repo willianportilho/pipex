@@ -1,73 +1,86 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_pre.c                                        :+:      :+:    :+:   */
+/*   pipex_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 02:20:17 by wportilh          #+#    #+#             */
-/*   Updated: 2022/08/08 00:36:33 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/08/08 05:48:11 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
-static void	get_path(char *envp[], t_data *data)
+static char	**get_path(char *envp[])
 {
 	int		i;
 	char	*line;
+	char	**all_path;
 
 	i = 0;
-	data->path.all_path = NULL;
+	all_path = NULL;
 	while (envp[i])
 	{
 		if (ft_strncmp("PATH", envp[i], 4) == 0)
 		{
 			line = ft_substr(envp[i], 5, ft_strlen(envp[i]) - 5);
-			data->path.all_path = ft_split(line, ':');
+			all_path = ft_split(line, ':');
 			free (line);
 		}
 		i++;
 	}
-	if (!data->path.all_path)
+	if (!all_path)
 	{
 		ft_printf("Error\n\"PATH\" not found.\n");
-		free(data->path.all_path);
+		free(all_path);
 		exit(EXIT_FAILURE);
 	}
+	return (all_path);
 }
 
-static void	get_cmd(char *argv[], t_data *data)
+char	*get_cmd_path(char *cmd, char *envp[])
 {
-	int		i;
+	char	**all_path;
+	char	*cmd_path;
 	char	*temp;
 	char	*temp2;
+	int		i;
 
+	all_path = get_path(envp);
+	temp = NULL;
+	cmd_path = NULL;
 	i = 0;
-	data->path.cmd_path = NULL;
-	data->path.cmd2_path = NULL;
-	data->arg.cmd = ft_split(argv[2], ' '); // Depois vou resolver a questão dos espaços fazendo uma função que leia isso
-	data->arg.cmd2 = ft_split(argv[3], ' ');
-	while (data->path.all_path[i])
+	temp2 = ft_strjoin("/", cmd);
+	while (all_path[i])
 	{
-		temp = ft_strjoin(data->path.all_path[i], \
-		ft_strjoin("/", data->arg.cmd[0]));
-		temp2 = ft_strjoin(data->path.all_path[i++], \
-		ft_strjoin("/", data->arg.cmd2[0]));
-		if ((access(temp, F_OK) == 0) && ((data->path.cmd_path) == NULL))
-			data->path.cmd_path = ft_strdup(temp);
-		if ((access(temp2, F_OK) == 0) && ((data->path.cmd2_path) == NULL))
-			data->path.cmd2_path = ft_strdup(temp2);
+		temp = ft_strjoin(all_path[i], temp2);
+		if (access(temp, F_OK) == 0)
+		{
+			cmd_path = ft_strdup(temp);
+			free(temp);
+			i = 0;
+			while (all_path[i])
+				free(all_path[i++]);
+			free(all_path);
+			free(temp2);
+			return(cmd_path);
+		}
 		free(temp);
-		free(temp2);
+		i++;
 	}
-	if (!data->path.cmd_path)
-		cmd_error(data->arg.cmd[0]);
-	if (!data->path.cmd2_path)
-		cmd_error(data->arg.cmd2[0]);
+	i = 0;
+	while (all_path[i])
+		free(all_path[i++]);
+	free(all_path);
+	if (!cmd_path)
+		cmd_error(cmd);
+	free(cmd_path);
+	free(temp2);
+	return(NULL);
 }
 
-void	pipex_pre(int argc, char *argv[], char *envp[], t_data *data)
+void	pipex_pre(int argc, char *argv[], t_data *data)
 {
 	if (argc != 5)
 	{
@@ -75,8 +88,6 @@ void	pipex_pre(int argc, char *argv[], char *envp[], t_data *data)
 		exit(EXIT_FAILURE);
 	}
 	data->pipex.exit = 0;
-	get_path(envp, data);
-	get_cmd(argv, data);
 	data->file.infile = open(argv[1], O_RDONLY);
 	if (data->file.infile == -1)
 		fd_error(argv[1], INFILE, data);
