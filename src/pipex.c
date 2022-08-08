@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 02:11:46 by wportilh          #+#    #+#             */
-/*   Updated: 2022/08/08 23:27:00 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/08/08 23:33:09 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ static int	child(t_data *data, char *argv[], char *envp[])
 		pipex_clean(&cmd_path, &cmd_arg);
 	dup2(data->pipex.fd[1], STDOUT_FILENO);
 	close(data->pipex.fd[1]);
-	execve(cmd_path, cmd_arg, envp);
+	if (execve(cmd_path, cmd_arg, envp) == -1)
+		ft_printf("exec error");
 	pipex_clean(&cmd_path, &cmd_arg);
-	ft_printf("%s: command error", cmd_arg[0]);
-	return (-1);
+	exit(EXIT_FAILURE);
 }
 
 static int	parent(t_data *data, char *argv[], char *envp[])
@@ -48,10 +48,10 @@ static int	parent(t_data *data, char *argv[], char *envp[])
 	close(data->pipex.fd[0]);
 	dup2(data->file.outfile, STDOUT_FILENO);
 	close(data->file.outfile);
-	execve(cmd_path, cmd_arg, envp);
+	if (execve(cmd_path, cmd_arg, envp) == -1)
+		ft_printf("exec2 error");
 	pipex_clean(&cmd_path, &cmd_arg);
-	ft_printf("%s: command2 error", cmd_arg[0]);
-	return (-1);
+	exit(EXIT_FAILURE);
 }
 
 void	pipex(t_data *data, char *argv[], char *envp[])

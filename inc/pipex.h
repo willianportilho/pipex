@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:11:31 by wportilh          #+#    #+#             */
-/*   Updated: 2022/08/08 23:20:37 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/08/09 01:13:17 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 # define PIPEX_H
 # define INFILE 0
 # define OUTFILE 1
+# define NO_CMD 127
 
 # include "./libft.h"
-# include <unistd.h> // Checar depois se é necessário
+# include <unistd.h> // checar qual função usa
 # include <fcntl.h>
 # include <sys/wait.h>
-#include <stdio.h>
+#include <stdio.h> // checar qual função usa (perror?)
 
 typedef struct s_file
 {

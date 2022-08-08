@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 23:26:13 by wportilh          #+#    #+#             */
-/*   Updated: 2022/08/03 19:13:35 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/08/09 01:28:15 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	fd_error(char *file_err, int check, t_data *data)
 void	cmd_error(char *cmd_err)
 {
 	char	*str;
-	str = ft_strjoin("bash: ", cmd_err);
+	str = ft_strjoin("pipex: ", cmd_err);
 	perror(str);
 	free(str);
 }
