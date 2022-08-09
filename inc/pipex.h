@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:11:31 by wportilh          #+#    #+#             */
-/*   Updated: 2022/08/09 01:13:17 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/08/09 04:23:51 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <unistd.h> // checar qual função usa
 # include <fcntl.h>
 # include <sys/wait.h>
-#include <stdio.h> // checar qual função usa (perror?)
+# include <stdio.h> // checar qual função usa (perror?)
 
 typedef struct s_file
 {
@@ -32,9 +32,8 @@ typedef struct s_pipex
 {
 	int		fd[2];
 	pid_t	pid1;
-	pid_t	pid2;
 	int		exit;
-	int		status;
+	int		check;
 }		t_pipex;
 
 typedef struct s_data
@@ -49,7 +48,9 @@ void	pipex_cmd(char *cmd, char *envp[]);
 void	fd_error(char *file_err, int check, t_data *data);
 void	cmd_error(char *cmd_err);
 char	*get_cmd_path(char *cmd, char *envp[]);
-char	**pipex_cmd_arg(char *cmd);
-void	pipex_clean(char **cmd_path, char ***cmd_arg);
+char	**pipex_cmd_arg(char *cmd, t_data *data);
+void	process_clean(char **cmd_path, char ***cmd_arg);
+void	clean_cmd_ok(char **temp, char **temp2, char ***all_path);
+void	clean_cmd_error(char **temp2, char **cmd_path, char ***all_path);
 
 #endif

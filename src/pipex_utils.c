@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 02:20:17 by wportilh          #+#    #+#             */
-/*   Updated: 2022/08/08 05:48:11 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/08/09 04:23:17 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,26 +58,14 @@ char	*get_cmd_path(char *cmd, char *envp[])
 		if (access(temp, F_OK) == 0)
 		{
 			cmd_path = ft_strdup(temp);
-			free(temp);
-			i = 0;
-			while (all_path[i])
-				free(all_path[i++]);
-			free(all_path);
-			free(temp2);
-			return(cmd_path);
+			clean_cmd_ok(&temp, &temp2, &all_path);
+			return (cmd_path);
 		}
 		free(temp);
 		i++;
 	}
-	i = 0;
-	while (all_path[i])
-		free(all_path[i++]);
-	free(all_path);
-	if (!cmd_path)
-		cmd_error(cmd);
-	free(cmd_path);
-	free(temp2);
-	return(NULL);
+	clean_cmd_error(&temp2, &cmd_path, &all_path);
+	return (NULL);
 }
 
 void	pipex_pre(int argc, char *argv[], t_data *data)
