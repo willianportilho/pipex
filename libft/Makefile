@@ -6,7 +6,7 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/07/13 20:01:48 by wportilh         ###   ########.fr        #
+#    Updated: 2022/08/10 00:48:05 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,21 +89,29 @@ CREATE		= ar rc
 RM			= rm -f
 
 ${NAME}:	${OBJ}
-			${CREATE} ${NAME} ${OBJ}
+			@${CREATE} ${NAME} ${OBJ}
+			@echo "================="
+			@echo "LIBFT COMPILED!!!"
+			@echo "================="
+			@sleep 2
 
 .c.o:		
-			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+			@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 all:		${NAME}
 
 bonus:		${OBJBONUS}
-			${CREATE} ${NAME} ${OBJBONUS}
+			@${CREATE} ${NAME} ${OBJBONUS}
+			@echo "================="
+			@echo "LIBFT_BONUS COMPILED!!!"
+			@echo "================="
+			@sleep 2
 
 clean:
-			${RM} ${OBJ} ${OBJBONUS}
+			@${RM} ${OBJ} ${OBJBONUS}
 
 fclean:		clean
-			${RM} ${NAME}
+			@${RM} ${NAME}
 
 re:			fclean all
 

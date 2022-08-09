@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 02:11:46 by wportilh          #+#    #+#             */
-/*   Updated: 2022/08/09 04:22:44 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/08/10 00:17:23 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ static int	child(t_data *data, char *argv[], char *envp[])
 	char	*cmd_path;
 	char	**cmd_arg;
 
+	dup2(data->file.infile, STDIN_FILENO);
+	close(data->file.infile);
 	close(data->pipex.fd[0]);
 	if (data->file.infile == -1)
 		exit(EXIT_FAILURE);
 	cmd_arg = pipex_cmd_arg(argv[2], data);
-	cmd_path = get_cmd_path(cmd_arg[0], envp);
+	cmd_path = pipex_cmd_path(cmd_arg[0], envp);
 	if (!cmd_path)
 		process_clean(&cmd_path, &cmd_arg);
 	dup2(data->pipex.fd[1], STDOUT_FILENO);
@@ -41,7 +43,7 @@ static int	parent(t_data *data, char *argv[], char *envp[])
 	if (data->file.outfile == -1)
 		exit(EXIT_FAILURE);
 	cmd_arg = pipex_cmd_arg(argv[3], data);
-	cmd_path = get_cmd_path(cmd_arg[0], envp);
+	cmd_path = pipex_cmd_path(cmd_arg[0], envp);
 	if (!cmd_path)
 		process_clean(&cmd_path, &cmd_arg);
 	dup2(data->pipex.fd[0], STDIN_FILENO);
@@ -60,6 +62,6 @@ void	pipex(t_data *data, char *argv[], char *envp[])
 	data->pipex.pid1 = fork();
 	if (data->pipex.pid1 == 0)
 		data->pipex.exit = child(data, argv, envp);
-	waitpid(data->pipex.pid1, NULL, 0);
+	wait(NULL);
 	parent(data, argv, envp);
 }
