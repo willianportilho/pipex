@@ -6,7 +6,7 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/08/10 00:57:14 by wportilh         ###   ########.fr        #
+#    Updated: 2022/08/10 01:20:27 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,7 +94,7 @@ clean:
 			@echo "=================="
 			@echo "CLEAN COMPLETED!!!"
 			@echo "=================="
-			@sleep 2
+			@sleep 1
 
 fclean:		clean
 			@${RM} ${NAME}
@@ -103,19 +103,18 @@ fclean:		clean
 			@echo "==================="
 			@echo "FCLEAN COMPLETED!!!"
 			@echo "==================="
-			@sleep 2
+			@sleep 1
 
 re:			fclean all
 			@echo "==============="
 			@echo "RE COMPLETED!!!"
 			@echo "==============="
-			@sleep 2
+			@sleep 1
 
 rebonus:	fclean bonus
 			@echo "===================="
 			@echo "REBONUS COMPLETED!!!"
 			@echo "===================="
-			@sleep 2
 
 .PHONY:		all bonus clean fclean re rebonus
 
