@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 02:11:46 by wportilh          #+#    #+#             */
-/*   Updated: 2022/08/10 00:17:23 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/08/10 04:42:20 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ static int	parent(t_data *data, char *argv[], char *envp[])
 void	pipex(t_data *data, char *argv[], char *envp[])
 {
 	pipe(data->pipex.fd);
-	data->pipex.pid1 = fork();
-	if (data->pipex.pid1 == 0)
+	data->pipex.pid = fork();
+	if (data->pipex.pid == 0)
 		data->pipex.exit = child(data, argv, envp);
 	wait(NULL);
 	parent(data, argv, envp);
