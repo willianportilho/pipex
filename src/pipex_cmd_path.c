@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 02:20:17 by wportilh          #+#    #+#             */
-/*   Updated: 2022/08/09 18:42:35 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/08/10 21:08:49 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ char	*pipex_cmd_path(char *cmd, char *envp[])
 		free(temp);
 		i++;
 	}
-	clean_cmd_error(&temp2, &cmd_path, &all_path);
+	clean_cmd_error(&temp2, &cmd_path, &all_path, cmd);
 	return (NULL);
 }

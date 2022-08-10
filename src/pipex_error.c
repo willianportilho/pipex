@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 23:26:13 by wportilh          #+#    #+#             */
-/*   Updated: 2022/08/10 00:01:50 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/08/10 21:00:34 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,14 @@ void	fd_error(char *file_err, int check, t_data *data)
 	}
 }
 
-void	cmd_error(char *cmd_err)
-{
-	char	*str;
-
-	str = ft_strjoin("pipex: ", cmd_err);
-	perror(str);
-	free(str);
-}
-
 void	quotes_error(void)
 {
-	ft_printf("Error\nBad input in single quotes (\') or (\") double quotes.\n");
+	ft_printf("Error\nBad input in single quotes (\') or double quotes (\").\n");
+	exit(EXIT_FAILURE);
+}
+
+void	function_fail(char *f_name)
+{
+	ft_printf("Error\n%s doesn't work.\n", f_name);
 	exit(EXIT_FAILURE);
 }
