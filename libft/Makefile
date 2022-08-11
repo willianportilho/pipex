@@ -6,7 +6,7 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/08/10 00:48:05 by wportilh         ###   ########.fr        #
+#    Updated: 2022/08/11 03:30:44 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,11 +88,22 @@ CREATE		= ar rc
 
 RM			= rm -f
 
+ITALIC =	\033[3m
+BLACK =		\033[30m
+RED =		\033[31m
+GREEN =		\033[32m
+YELLOW =	\033[33m
+BLUE =		\033[34m
+PURPLE =	\033[35m
+CYAN =		\033[36m
+WHITE =		\033[37m
+RESET =		\033[0m
+
 ${NAME}:	${OBJ}
 			@${CREATE} ${NAME} ${OBJ}
-			@echo "================="
+			@echo "${CYAN}================="
 			@echo "LIBFT COMPILED!!!"
-			@echo "================="
+			@echo "=================${RESET}"
 			@sleep 2
 
 .c.o:		
@@ -102,9 +113,9 @@ all:		${NAME}
 
 bonus:		${OBJBONUS}
 			@${CREATE} ${NAME} ${OBJBONUS}
-			@echo "================="
+			@echo "${CYAN}================="
 			@echo "LIBFT_BONUS COMPILED!!!"
-			@echo "================="
+			@echo "=================${RESET}"
 			@sleep 2
 
 clean:
