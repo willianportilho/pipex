@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 05:11:31 by wportilh          #+#    #+#             */
-/*   Updated: 2022/08/10 21:08:00 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/08/11 19:33:37 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ typedef struct s_file
 
 typedef struct s_pipex
 {
-	int		fd[2];
-	int		pid;
-	int		exit;
-	int		check;
+	int	fd[2];
+	int	pid;
+	int	exit;
+	int	check;
 }		t_pipex;
 
 typedef struct s_data
