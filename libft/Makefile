@@ -6,7 +6,7 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/08/11 03:30:44 by wportilh         ###   ########.fr        #
+#    Updated: 2022/09/16 01:58:19 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,10 +101,9 @@ RESET =		\033[0m
 
 ${NAME}:	${OBJ}
 			@${CREATE} ${NAME} ${OBJ}
-			@echo "${CYAN}================="
+			@echo "${CYAN}-----------------"
 			@echo "LIBFT COMPILED!!!"
-			@echo "=================${RESET}"
-			@sleep 2
+			@echo "-----------------${RESET}"
 
 .c.o:		
 			@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
@@ -113,10 +112,9 @@ all:		${NAME}
 
 bonus:		${OBJBONUS}
 			@${CREATE} ${NAME} ${OBJBONUS}
-			@echo "${CYAN}================="
+			@echo "${CYAN}-----------------------"
 			@echo "LIBFT_BONUS COMPILED!!!"
-			@echo "=================${RESET}"
-			@sleep 2
+			@echo "-----------------------${RESET}"
 
 clean:
 			@${RM} ${OBJ} ${OBJBONUS}

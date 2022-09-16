@@ -1,0 +1,7 @@
+vgcore*
+libft.a
+pipex
+pipex_bonus
+*.o
+pipex_denis/
+outfile

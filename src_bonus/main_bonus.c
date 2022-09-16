@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 17:29:18 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/16 01:29:03 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/16 02:28:05 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ static void	alloc_resources(t_data *data)
 	i = -1;
 	data->pipex.pipes = malloc((data->pipex.amount_cmd + 1) * sizeof(int *));
 	while (++i < data->pipex.amount_cmd)
-		data->pipex.pipes[i] = malloc(data->pipex.amount_cmd * sizeof(int));
-	data->pipex.pid = malloc(data->pipex.amount_cmd + 1 * sizeof(int));
+		data->pipex.pipes[i] = malloc((\
+		data->pipex.amount_cmd + 1) * sizeof(int));
+	data->pipex.pid = malloc((data->pipex.amount_cmd + 1) * sizeof(int));
+	data->pipex.pipes[data->pipex.amount_cmd] = NULL;
 }
 
 static void	pipex_pre(int argc, char *argv[], t_data *data)

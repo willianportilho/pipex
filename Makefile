@@ -6,7 +6,7 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/16 01:38:20 by wportilh         ###   ########.fr        #
+#    Updated: 2022/09/16 02:52:09 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,8 @@ RM =		rm -f
 RM_ALL =	rm -rf
 
 LIBFT =		./libft/libft.a
+
+VAL =		valgrind --leak-check=full --show-leak-kinds=all
 
 LIB =		./libft
 INC =		./inc
